@@ -12,6 +12,7 @@
 #include "esp/types.h"
 #include "esp/uart_regs.h"
 #include "esp/clocks.h"
+#include "espressif/esp8266/esp8266.h"
 
 #define UART_FIFO_MAX 127
 
@@ -115,6 +116,8 @@ static inline void uart_flush_rxfifo(int uart_num) {
 static inline void uart_set_baud(int uart_num, int bps)
 {
     uint32_t divider = APB_CLK_FREQ / bps;
+    if (uart_num == 1)
+        PIN_FUNC_SELECT(PERIPHS_IO_MUX_GPIO2_U, FUNC_U1TXD_BK);
     UART(uart_num).CLOCK_DIVIDER = divider;
 }
 
