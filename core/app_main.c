@@ -346,7 +346,7 @@ void sdk_user_init_task(void *params) {
     if (sdk_g_ic.s.wifi_mode == 3) {
         sdk_wifi_station_start();
         sdk_wifi_softap_start();
-        netif_set_default(sdk_g_ic.v.softap_netif_info->netif);
+        netif_set_default(sdk_g_ic.v.station_netif_info->netif);
     }
     if (sdk_wifi_station_get_auto_connect()) {
         sdk_wifi_station_connect();
